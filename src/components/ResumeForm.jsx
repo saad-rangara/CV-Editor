@@ -343,7 +343,14 @@ export default function ResumeForm({ handleSubmit }) {
           Personal Profile:
         </label> */}
         <RichTextEditor editorContent={content} onChange={handleEditorChange} />
-
+        {/* <textarea
+          name="details"
+          id="details"
+          value={state.details}
+          onChange={handleInputChange}
+          required
+          className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        /> */}
         <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
           Work Experience
         </h2>
@@ -435,9 +442,17 @@ export default function ResumeForm({ handleSubmit }) {
             >
               Summary:
             </label>
-            <RichTextEditor
+            {/* <RichTextEditor
               editorContent={content}
               onChange={handleEditorChange}
+            /> */}
+            <textarea
+              name="details"
+              id="details"
+              value={state.details}
+              onChange={handleInputChange}
+              required
+              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -450,7 +465,15 @@ export default function ResumeForm({ handleSubmit }) {
         >
           Skills
         </label>
-        <RichTextEditor editorContent={content} onChange={handleEditorChange} />
+        {/* <RichTextEditor editorContent={content} onChange={handleEditorChange} /> */}
+        <textarea
+          name="details"
+          id="details"
+          value={state.details}
+          onChange={handleInputChange}
+          required
+          className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
         <label
           htmlFor="education"
           className="block text-gray-700 text-3xl font-medium mb-2"
@@ -543,9 +566,17 @@ export default function ResumeForm({ handleSubmit }) {
             >
               Summary:
             </label>
-            <RichTextEditor
+            {/* <RichTextEditor
               editorContent={content}
               onChange={handleEditorChange}
+            /> */}
+            <textarea
+              name="details"
+              id="details"
+              value={state.details}
+              onChange={handleInputChange}
+              required
+              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
