@@ -1,5 +1,5 @@
 import { RoomProvider, ClientSideSuspense } from "@liveblocks/react/suspense";
-import { Loading } from "../components/Loading"; // Create this component or replace it with your own
+import { Loading } from "./Loading"; // Create this component or replace it with your own
 
 export function Room({ children, roomId }) {
   return (
