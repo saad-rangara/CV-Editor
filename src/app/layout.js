@@ -31,7 +31,9 @@ export default function RootLayout({ children }) {
           <Header />
           <div className="navbar bg-base-100">
             <div className="flex-1">
-              <a className="btn btn-ghost text-xl">CV Maker</a>
+              <Link href="/">
+                <button className="btn">CV Maker</button>
+              </Link>
             </div>
             <div className="flex-none">
               <button className="btn btn-square btn-ghost">
