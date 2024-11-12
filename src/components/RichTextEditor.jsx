@@ -29,7 +29,7 @@ import ListItem from "@tiptap/extension-list-item";
 const RichTextEditor = ({ editorContent, onChange }) => {
   const editor = useEditor({
     extensions: [
-      StarterKit, // Provides core formatting
+      StarterKit,
       BulletList,
       OrderedList,
       TextStyle,

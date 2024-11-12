@@ -1,6 +1,7 @@
 "use client";
 import React, { useReducer, useState } from "react";
 import RichTextEditor from "./RichTextEditor";
+// import dynamic from "next/dynamic";
 // import Tiptap from "./Tiptap";
 
 const initialState = {
@@ -335,20 +336,12 @@ export default function ResumeForm({ handleSubmit }) {
           Personal Profile
         </h2>
 
-        <label
+        {/* <label
           htmlFor="details"
           className="block text-gray-700 font-medium mb-2"
         >
           Personal Profile:
-        </label>
-        {/* <textarea
-          name="details"
-          id="details"
-          value={state.details}
-          onChange={handleInputChange}
-          required
-          className="w-full p-2 mb-8 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-        /> */}
+        </label> */}
         <RichTextEditor editorContent={content} onChange={handleEditorChange} />
 
         <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
@@ -442,13 +435,6 @@ export default function ResumeForm({ handleSubmit }) {
             >
               Summary:
             </label>
-            {/* <textarea
-              name="work_summary"
-              id="work_summary"
-              value={state.work_summary}
-              onChange={handleInputChange}
-              className="w-full p-2 mb-8 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-            /> */}
             <RichTextEditor
               editorContent={content}
               onChange={handleEditorChange}
@@ -456,27 +442,21 @@ export default function ResumeForm({ handleSubmit }) {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">Skills</h2>
+        {/* <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">Skills</h2> */}
 
         <label
           htmlFor="skills"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-gray-700 text-3xl font-medium mb-2"
         >
-          Skills:
+          Skills
         </label>
-        {/* <textarea
-          name="skills"
-          id="skills"
-          value={state.skills}
-          onChange={handleInputChange}
-          required
-          className="w-full p-2 mb-8 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-        /> */}
         <RichTextEditor editorContent={content} onChange={handleEditorChange} />
-
-        <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
-          Education
-        </h2>
+        <label
+          htmlFor="education"
+          className="block text-gray-700 text-3xl font-medium mb-2"
+        >
+          Educations
+        </label>
         <div className="flex space-x-4">
           <div className="w-1/2">
             <label
@@ -799,6 +779,11 @@ export default function ResumeForm({ handleSubmit }) {
             <></>
           )}
           {<p className="ml-4 mr-4 text-gray-600 text-xs">{state.skills}</p>}
+
+          <div
+            className="ml-4 mr-4 text-gray-600 text-xs"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </div>
       </div>
     </div>
