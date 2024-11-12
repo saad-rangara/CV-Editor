@@ -1,13 +1,16 @@
-import ResumeForm from "@/Components/ResumeForm";
+import ResumeForm from "@/components/ResumeForm";
+// import Tiptap from "@/components/Tiptap";
 
-export default function resumePage(){
-    async function handleResume() {
-        "use server";
-      }
-    return(
-        <>
-        
-        <ResumeForm  handleSubmit={handleResume}/>
-        </>
-    )
+export default function resumePage() {
+  async function handleResume(event) {
+    "use server";
+    event.prventDefault();
+    console.log("Form submitted", state);
+    ("use server");
+  }
+  return (
+    <>
+      <ResumeForm handleSubmit={handleResume} />
+    </>
+  );
 }

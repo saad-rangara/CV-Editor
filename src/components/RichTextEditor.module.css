@@ -1,0 +1,50 @@
+/* RichTextEditor.module.css */
+
+/* Editor styles*/
+:global(.tiptap .ProseMirror .editorWrapper) {
+  color: black !important;
+  background-color: white !important;
+}
+
+.control-group {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Styling for active buttons */
+button.is-active {
+  background-color: #0070f3;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+button.is-active.bold,
+button.is-active.italic,
+button.is-active.strike,
+button.is-active.code,
+button.is-active.paragraph,
+button.is-active.heading,
+button.is-active.bulletList,
+button.is-active.orderedList,
+button.is-active.blockquote,
+button.is-active.horizontalRule,
+button.is-active.hardBreak {
+  background-color: #0070f3;
+  color: white;
+  font-weight: bold;
+}
