@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header />
+          {/* <Header /> */}
           <div className="navbar bg-base-100">
             <div className="flex-1">
               <Link href="/" className="btn">
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
               </Link>
             </div>
             <div className="flex-none">
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 items-center">
                 <Link href="/hello" className="btn">
                   About
                 </Link>
@@ -45,6 +45,8 @@ export default function RootLayout({ children }) {
                 <Link href="/resume" className="btn">
                   Create CV
                 </Link>
+                <Header />
+
                 <button className="btn btn-square btn-ghost">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

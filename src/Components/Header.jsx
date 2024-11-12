@@ -5,7 +5,6 @@ import {
   SignIn,
   SignedOut,
   SignedIn,
-  ClerkProvider,
 } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 
