@@ -120,7 +120,7 @@ export default function ResumeForm({ handleSubmit }) {
                             id="first_name"
                             value={state.first_name}
                             onChange={handleInputChange}
-                            required
+                             required
                             className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
@@ -135,7 +135,7 @@ export default function ResumeForm({ handleSubmit }) {
                             id="last_name"
                             value={state.last_name}
                             onChange={handleInputChange}
-                            required
+                             required
                             className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
@@ -351,7 +351,8 @@ export default function ResumeForm({ handleSubmit }) {
                             value={state.startdate_work}
                             onChange={handleInputChange}
                             className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required />
+                            required 
+                        />
 
                         <label htmlFor="enddate_work" className="block text-gray-700 font-medium mb-2">End Date:</label>
                         <input
@@ -428,11 +429,11 @@ export default function ResumeForm({ handleSubmit }) {
                         />
                     </div>
                     <div className="w-1/2">
-                        <label htmlFor="startdate_edu" className="block text-gray-700 font-medium mb-2" >Start Date:</label>
+                        <label htmlFor="stratdate_edu" className="block text-gray-700 font-medium mb-2" >Start Date:</label>
                         <input
                             type="date"
-                            name="startdate_edu"
-                            id="startdate_edu"
+                            name="stratdate_edu"
+                            id="stratdate_edu"
                             value={state.startdate_edu}
                             onChange={handleInputChange}
 
