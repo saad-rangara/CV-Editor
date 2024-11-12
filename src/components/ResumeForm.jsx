@@ -1,5 +1,8 @@
 "use client";
 import React, { useReducer, useState } from "react";
+import RichTextEditor from "./RichTextEditor";
+// import dynamic from "next/dynamic";
+// import Tiptap from "./Tiptap";
 
 const initialState = {
   first_name: "",
@@ -93,6 +96,11 @@ function formReducer(state, action) {
 
 export default function ResumeForm({ handleSubmit }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const [content, setContent] = useState("");
+
+  const handleEditorChange = (newContent) => {
+    setContent(newContent);
+  };
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -104,7 +112,10 @@ export default function ResumeForm({ handleSubmit }) {
   return (
     <div className="flex  min-h-screen bg-gray-100">
       <form
-        action={handleSubmit}
+        onSubmit={(event) => {
+          event.preventDefault(); // Prevent default form submission
+          handleSubmit(state); // Pass state to handleSubmit
+        }}
         className="overflow-y-auto w-1/2 h-screen bg-white shadow-md rounded-lg p-8"
       >
         <h2 className="text-2xl font-bold mb-6 text-gray-800">
@@ -125,7 +136,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.first_name}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 text-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -143,7 +154,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.last_name}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -158,7 +169,7 @@ export default function ResumeForm({ handleSubmit }) {
           value={state.email}
           onChange={handleInputChange}
           required
-          className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <label
@@ -174,7 +185,7 @@ export default function ResumeForm({ handleSubmit }) {
           value={state.position}
           onChange={handleInputChange}
           required
-          className="w-full p-2 mb-6 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 mb-6 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
@@ -196,7 +207,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.phonenumber}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -206,14 +217,13 @@ export default function ResumeForm({ handleSubmit }) {
               Address:
             </label>
             <textarea
-              name="address"
-              id="address"
-              value={state.address}
+              name="details"
+              id="details"
+              value={state.details}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-8 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-
             <label
               htmlFor="postcode"
               className="block text-gray-700 font-medium mb-2"
@@ -226,7 +236,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="postcode"
               value={state.postcode}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -241,7 +251,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="city"
               value={state.city}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="w-1/2">
@@ -257,7 +267,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="driving_licence"
               value={state.driving_licence}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -272,7 +282,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="gender"
               value={state.gender}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -287,7 +297,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="date_of_birth"
               value={state.date_of_birth}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -302,7 +312,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="nationality"
               value={state.nationality}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -317,7 +327,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="birth_place"
               value={state.birth_place}
               onChange={handleInputChange}
-              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-8 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -326,21 +336,21 @@ export default function ResumeForm({ handleSubmit }) {
           Personal Profile
         </h2>
 
-        <label
+        {/* <label
           htmlFor="details"
           className="block text-gray-700 font-medium mb-2"
         >
           Personal Profile:
-        </label>
-        <textarea
+        </label> */}
+        <RichTextEditor editorContent={content} onChange={handleEditorChange} />
+        {/* <textarea
           name="details"
           id="details"
           value={state.details}
           onChange={handleInputChange}
           required
           className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-
+        /> */}
         <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
           Work Experience
         </h2>
@@ -359,7 +369,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.jobtitle}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -375,7 +385,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.company}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -391,7 +401,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.location}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="w-1/2">
@@ -407,7 +417,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="startdate_work"
               value={state.startdate_work}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
 
@@ -423,7 +433,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="enddate_work"
               value={state.enddate_work}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -432,35 +442,44 @@ export default function ResumeForm({ handleSubmit }) {
             >
               Summary:
             </label>
+            {/* <RichTextEditor
+              editorContent={content}
+              onChange={handleEditorChange}
+            /> */}
             <textarea
-              name="work_summary"
-              id="work_summary"
-              value={state.work_summary}
+              name="details"
+              id="details"
+              value={state.details}
               onChange={handleInputChange}
+              required
+              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">Skills</h2>
+        {/* <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">Skills</h2> */}
 
         <label
           htmlFor="skills"
-          className="block text-gray-700 font-medium mb-2"
+          className="block text-gray-700 text-3xl font-medium mb-2"
         >
-          Skills:
+          Skills
         </label>
+        {/* <RichTextEditor editorContent={content} onChange={handleEditorChange} /> */}
         <textarea
-          name="skills"
-          id="skills"
-          value={state.skills}
+          name="details"
+          id="details"
+          value={state.details}
           onChange={handleInputChange}
           required
           className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-
-        <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
-          Education
-        </h2>
+        <label
+          htmlFor="education"
+          className="block text-gray-700 text-3xl font-medium mb-2"
+        >
+          Educations
+        </label>
         <div className="flex space-x-4">
           <div className="w-1/2">
             <label
@@ -476,7 +495,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.institute}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -492,7 +511,7 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.degree}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <label
               htmlFor="edu_location"
@@ -507,24 +526,24 @@ export default function ResumeForm({ handleSubmit }) {
               value={state.edu_location}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="w-1/2">
             <label
-              htmlFor="stratdate_edu"
+              htmlFor="startdate_edu"
               className="block text-gray-700 font-medium mb-2"
             >
               Start Date:
             </label>
             <input
               type="date"
-              name="stratdate_edu"
-              id="stratdate_edu"
+              name="startdate_edu"
+              id="startdate_edu"
               value={state.startdate_edu}
               onChange={handleInputChange}
               required
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <label
               htmlFor="enddate_edu"
@@ -538,7 +557,7 @@ export default function ResumeForm({ handleSubmit }) {
               id="enddate_edu"
               value={state.enddate_edu}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <label
@@ -547,12 +566,17 @@ export default function ResumeForm({ handleSubmit }) {
             >
               Summary:
             </label>
+            {/* <RichTextEditor
+              editorContent={content}
+              onChange={handleEditorChange}
+            /> */}
             <textarea
-              name="edu_summary"
-              id="edu_summary"
-              value={state.edu_summary}
+              name="details"
+              id="details"
+              value={state.details}
               onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -596,7 +620,7 @@ export default function ResumeForm({ handleSubmit }) {
         >
           <div className="flex justify-between">
             <div className="flex flex-col">
-              <p className="mt-12 ml-4 text-gray-600 text-xl">
+              <p className="mt-12 ml-4 text-3xl text-blue-800">
                 {state.first_name} {state.last_name}
               </p>
               <p className="ml-4 text-gray-600 text-xs"> {state.position} </p>
@@ -620,7 +644,7 @@ export default function ResumeForm({ handleSubmit }) {
               state.date_of_birth ||
               state.nationality ||
               state.birth_place ? (
-                <p className="text-xl ml-4"> Additional Info </p>
+                <p className="text-xl text-blue-600 ml-4"> Additional Info </p>
               ) : (
                 <></>
               )}
@@ -661,7 +685,7 @@ export default function ResumeForm({ handleSubmit }) {
                 <></>
               )}
               {state.details ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xl"> About </p>
+                <p className="ml-4 mr-4 text-blue-600 text-xl"> About </p>
               ) : (
                 <></>
               )}
@@ -677,7 +701,7 @@ export default function ResumeForm({ handleSubmit }) {
               state.startdate_work ||
               state.enddate_work ||
               state.work_summary ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xl">
+                <p className="ml-4 mr-4 text-blue-600 text-xl">
                   {" "}
                   Work Experiance
                 </p>
@@ -732,7 +756,7 @@ export default function ResumeForm({ handleSubmit }) {
               state.startdate_edu ||
               state.enddate_edu ||
               state.edu_summary ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xl">Education</p>
+                <p className="ml-4 mr-4 text-blue-600 text-xl">Education</p>
               ) : (
                 <></>
               )}
@@ -781,11 +805,16 @@ export default function ResumeForm({ handleSubmit }) {
             </div>
           </div>
           {state.skills ? (
-            <p className="ml-4 mr-4 text-gray-600 text-xl">Skill</p>
+            <p className="ml-4 mr-4 text-blue-600 text-xl">Skill</p>
           ) : (
             <></>
           )}
           {<p className="ml-4 mr-4 text-gray-600 text-xs">{state.skills}</p>}
+
+          <div
+            className="ml-4 mr-4 text-gray-600 text-xs"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </div>
       </div>
     </div>

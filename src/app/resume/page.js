@@ -1,4 +1,4 @@
-import ResumeForm from "@/Components/ResumeForm";
+import ResumeForm from "@/components/ResumeForm";
 import { db } from "@/utils/dbconnection";
 
 export default function resumePage() {
