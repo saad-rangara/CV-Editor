@@ -1,4 +1,4 @@
-import ResumeForm from "@/Components/ResumeForm";
+import ResumeForm from "@/components/ResumeForm";
 // import Tiptap from "@/components/Tiptap";
 
 export default function resumePage() {
