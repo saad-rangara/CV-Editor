@@ -3,7 +3,6 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/Components/Header";
 import Link from "next/link";
-import { global } from "styled-jsx/css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,35 +30,37 @@ export default function RootLayout({ children }) {
           <Header />
           <div className="navbar bg-base-100">
             <div className="flex-1">
-              <Link href="/">
-                <button className="btn">CV Maker</button>
+              <Link href="/" className="btn">
+                CV Maker
               </Link>
             </div>
             <div className="flex-none">
-              <button className="btn btn-square btn-ghost">
-                <Link href="/hello">
-                  <button className="btn">About</button>
+              <div className="flex space-x-2">
+                <Link href="/hello" className="btn">
+                  About
                 </Link>
-                <Link href="/">
-                  <button className="btn">Home</button>
+                <Link href="/" className="btn">
+                  Home
                 </Link>
-                <Link href="/resume">
-                  <button className="btn">Create CV</button>
+                <Link href="/resume" className="btn">
+                  Create CV
                 </Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block h-5 w-5 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  ></path>
-                </svg>
-              </button>
+                <button className="btn btn-square btn-ghost">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block h-5 w-5 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
           {children}
