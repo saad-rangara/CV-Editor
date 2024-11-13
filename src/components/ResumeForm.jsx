@@ -1,5 +1,5 @@
 "use client";
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Tiptap from "./TipTap";
 import parser from "html-react-parser";
 
@@ -93,13 +93,42 @@ function formReducer(state, action) {
   }
 }
 
-export default function ResumeForm({ handleSubmit }) {
+export default function ResumeForm({ handleSubmit , dbData }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [content, setContent] = useState("");
 
-  // const handleEditorChange = (newContent) => {
-  //   setContent(newContent);
-  // };
+  useEffect(() => {
+    // Set default value after component mounts if needed
+    if(dbData){
+      dispatch({ type: `SET_FIRST_NAME`, formValue: dbData.first_name });
+      dispatch({ type: `SET_LAST_NAME`, formValue: dbData.last_name });
+      dispatch({ type: `SET_EMAIL`, formValue: dbData.email });
+      dispatch({ type: `SET_POSITION`, formValue: dbData.position });
+      dispatch({ type: `SET_PHONENUMBER`, formValue: dbData.phonenumber });
+      dispatch({ type: `SET_ADDRESS`, formValue: dbData.address });
+      dispatch({ type: `SET_POSTCODE`, formValue: dbData.postcode });
+      dispatch({ type: `SET_CITY`, formValue: dbData.city });
+      dispatch({ type: `SET_DRIVING_LICENCE`, formValue: dbData.driving_licence });
+      dispatch({ type: `SET_GENDER`, formValue: dbData.gender });
+      dispatch({ type: `SET_DATE_OF_BIRTH`, formValue: dbData.date_of_birth });
+      dispatch({ type: `SET_NATIONALITY`, formValue: dbData.nationality });
+      dispatch({ type: `SET_BIRTH_PLACE`, formValue: dbData.birth_place });
+      dispatch({ type: `SET_DETAILS`, formValue: dbData.details });
+      dispatch({ type: `SET_JOBTITLE`, formValue: dbData.jobtitle });
+      dispatch({ type: `SET_COMPANY`, formValue: dbData.company });
+      dispatch({ type: `SET_LOCATION`, formValue: dbData.location });
+      dispatch({ type: `SET_STARTDATE_WORK`, formValue: dbData.startdate_work });
+      dispatch({ type: `SET_ENDDATE_WORK`, formValue: dbData.enddate_work });
+      dispatch({ type: `SET_WORK_SUMMARY`, formValue: dbData.work_summary });
+      dispatch({ type: `SET_SKILLS`, formValue: dbData.skills });
+      dispatch({ type: `SET_INSTITUTE`, formValue: dbData.institute });
+      dispatch({ type: `SET_DEGREE`, formValue: dbData.degree });
+      dispatch({ type: `SET_EDU_LOCATION`, formValue: dbData.edu_location });
+      dispatch({ type: `SET_STARTDATE_EDU`, formValue: dbData.startdate_edu });
+      dispatch({ type: `SET_ENDDATE_EDU`, formValue: dbData.enddate_edu });
+      dispatch({ type: `SET_EDU_SUMMARY`, formValue: dbData.edu_summary });
+    }
+  }, []);
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -186,7 +215,7 @@ export default function ResumeForm({ handleSubmit }) {
           htmlFor="position"
           className="block text-gray-700 font-medium mb-2"
         >
-          Position:
+          Current Position:
         </label>
         <input
           type="text"
@@ -609,7 +638,7 @@ export default function ResumeForm({ handleSubmit }) {
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-6"
         >
-          Submit
+          Save Details
         </button>
       </form>
 
@@ -674,7 +703,7 @@ export default function ResumeForm({ handleSubmit }) {
               )}
               {state.driving_licence ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  Driving Licence {state.driving_licence}{" "}
+                  Driving Licence : {state.driving_licence}{" "}
                 </p>
               ) : (
                 <></>
@@ -682,28 +711,28 @@ export default function ResumeForm({ handleSubmit }) {
 
               {state.gender ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  Gender {state.gender}
+                  Gender : {state.gender}
                 </p>
               ) : (
                 <></>
               )}
               {state.date_of_birth ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  Date Of Birth {state.date_of_birth}
+                  Date Of Birth : {state.date_of_birth}
                 </p>
               ) : (
                 <></>
               )}
               {state.nationality ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  Nationality {state.nationality}
+                  Nationality : {state.nationality}
                 </p>
               ) : (
                 <></>
               )}
               {state.birth_place ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  Birth Place {state.birth_place}
+                  Birth Place : {state.birth_place}
                 </p>
               ) : (
                 <></>
@@ -755,14 +784,14 @@ export default function ResumeForm({ handleSubmit }) {
               )}
               {state.startdate_work ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  {state.startdate_work}
+                  Start : {state.startdate_work}
                 </p>
               ) : (
                 <></>
               )}
               {state.enddate_work ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  {state.enddate_work}
+                  End : {state.enddate_work}
                 </p>
               ) : (
                 <></>
@@ -807,14 +836,14 @@ export default function ResumeForm({ handleSubmit }) {
               )}
               {state.startdate_edu ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  {state.startdate_edu}
+                  Start : {state.startdate_edu}
                 </p>
               ) : (
                 <></>
               )}
               {state.enddate_edu ? (
                 <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  {state.enddate_edu}
+                  End : {state.enddate_edu}
                 </p>
               ) : (
                 <></>

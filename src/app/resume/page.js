@@ -2,7 +2,10 @@ import ResumeForm from "@/components/ResumeForm";
 import { db } from "@/utils/dbconnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/dist/server/api-utils";
+import { auth } from "@clerk/nextjs/server";
+
 export default function resumePage() {
+
   async function handleResume(formValues) {
     "use server";
     // console.log("Hello");
@@ -36,15 +39,9 @@ export default function resumePage() {
       enuSummary: formValues.get("edu_summary"),
     };
 
-    // console.log(formData);
-    // await db.query(`INSERT INTO personaldetails(first_name,last_name,email,position)
-    //     VALUES ($1,$2,$3,$4)`,
-    // [formData.firstName,formData.lastName,formData.email,formData.position]
-    // );
+    const { userId } = await auth();
 
-    await db.query(`select save_details1($1::JSON)`, [formData]);
-    // revalidatePath{"/hometwo"};
-    // redirect{"/hometwo"};
+    await db.query(`select save_details2($1::JSON,$2::TEXT)`, [formData, userId]);
   }
 
   return (
