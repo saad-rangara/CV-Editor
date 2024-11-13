@@ -45,6 +45,9 @@ export default function RootLayout({ children }) {
                 <Link href="/resume" className="btn">
                   Create CV
                 </Link>
+                <Link href="/hometwo" className="btn">
+                  Old CV
+                </Link>
                 <Header />
 
                 <button className="btn btn-square btn-ghost">
