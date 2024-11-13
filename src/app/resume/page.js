@@ -2,6 +2,7 @@ import ResumeForm from "@/components/ResumeForm";
 import { db } from "@/utils/dbconnection";
 
 export default function resumePage() {
+
   async function handleResume(formValues) {
     "use server";
     // console.log("Hello");
@@ -34,13 +35,15 @@ export default function resumePage() {
       endDateEdu: formValues.get("enddate_edu"),
       enuSummary: formValues.get("edu_summary"),
     };
+    
 
+    console.log(formData);
     // await db.query(`INSERT INTO personaldetails(first_name,last_name,email,position)
     //     VALUES ($1,$2,$3,$4)`,
     // [formData.firstName,formData.lastName,formData.email,formData.position]
     // );
 
-    await db.query(`select save_details1($1::JSON)`, [formData]);
+    // await db.query(`select save_details1($1::JSON)`, [formData]);
   }
 
   return (

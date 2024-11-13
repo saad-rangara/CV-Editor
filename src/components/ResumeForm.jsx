@@ -1,8 +1,7 @@
 "use client";
 import React, { useReducer, useState } from "react";
-import RichTextEditor from "./RichTextEditor";
-// import dynamic from "next/dynamic";
-// import Tiptap from "./Tiptap";
+import Tiptap from "./TipTap";
+import parser from "html-react-parser";
 
 const initialState = {
   first_name: "",
@@ -98,9 +97,9 @@ export default function ResumeForm({ handleSubmit }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [content, setContent] = useState("");
 
-  const handleEditorChange = (newContent) => {
-    setContent(newContent);
-  };
+  // const handleEditorChange = (newContent) => {
+  //   setContent(newContent);
+  // };
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -112,10 +111,7 @@ export default function ResumeForm({ handleSubmit }) {
   return (
     <div className="flex  min-h-screen bg-gray-100">
       <form
-        onSubmit={(event) => {
-          event.preventDefault(); // Prevent default form submission
-          handleSubmit(state); // Pass state to handleSubmit
-        }}
+        action={handleSubmit}
         className="overflow-y-auto w-1/2 h-screen bg-white shadow-md rounded-lg p-8"
       >
         <h2 className="text-2xl font-bold mb-6 text-gray-800">
@@ -216,10 +212,11 @@ export default function ResumeForm({ handleSubmit }) {
             >
               Address:
             </label>
-            <textarea
-              name="details"
-              id="details"
-              value={state.details}
+            <input
+              type="text"
+              name="address"
+              id="address"
+              value={state.address}
               onChange={handleInputChange}
               required
               className="w-full p-2 mb-8 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -337,12 +334,12 @@ export default function ResumeForm({ handleSubmit }) {
         </h2>
 
         {/* <label
+        {/* <label
           htmlFor="details"
           className="block text-gray-700 font-medium mb-2"
         >
           Personal Profile:
         </label> */}
-        <RichTextEditor editorContent={content} onChange={handleEditorChange} />
         {/* <textarea
           name="details"
           id="details"
@@ -351,6 +348,13 @@ export default function ResumeForm({ handleSubmit }) {
           required
           className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         /> */}
+        <Tiptap
+          content={state.details}
+          onContentChange={(content) =>
+            dispatch({ type: 'SET_DETAILS', formValue: content })
+          }
+        />
+
         <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
           Work Experience
         </h2>
@@ -435,27 +439,30 @@ export default function ResumeForm({ handleSubmit }) {
               onChange={handleInputChange}
               className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-
-            <label
-              htmlFor="work_summary"
-              className="block text-gray-700 font-medium mb-2"
-            >
-              Summary:
-            </label>
-            {/* <RichTextEditor
-              editorContent={content}
-              onChange={handleEditorChange}
-            /> */}
-            <textarea
-              name="details"
-              id="details"
-              value={state.details}
-              onChange={handleInputChange}
-              required
-              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
           </div>
+
         </div>
+
+        <label
+          htmlFor="work_summary"
+          className="block text-gray-700 font-medium mb-2"
+        >
+          Summary:
+        </label>
+        {/* <textarea
+              name="work_summary"
+              id="work_summary"
+              value={state.work_summary}
+              onChange={handleInputChange}
+              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            /> */}
+
+        <Tiptap
+          content={state.work_summary}
+          onContentChange={(content) =>
+            dispatch({ type: 'SET_WORK_SUMMARY', formValue: content })
+          }
+        />
 
         {/* <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">Skills</h2> */}
 
@@ -465,21 +472,25 @@ export default function ResumeForm({ handleSubmit }) {
         >
           Skills
         </label>
-        {/* <RichTextEditor editorContent={content} onChange={handleEditorChange} /> */}
-        <textarea
-          name="details"
-          id="details"
-          value={state.details}
+        {/* <textarea
+          name="skills"
+          id="skills"
+          value={state.skills}
           onChange={handleInputChange}
           required
           className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        /> */}
+
+        <Tiptap
+          content={state.skills}
+          onContentChange={(content) =>
+            dispatch({ type: 'SET_SKILLS', formValue: content })
+          }
         />
-        <label
-          htmlFor="education"
-          className="block text-gray-700 text-3xl font-medium mb-2"
-        >
-          Educations
-        </label>
+
+        <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
+          Education
+        </h2>
         <div className="flex space-x-4">
           <div className="w-1/2">
             <label
@@ -560,26 +571,27 @@ export default function ResumeForm({ handleSubmit }) {
               className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
-            <label
-              htmlFor="edu_summary"
-              className="block text-gray-700 font-medium mb-2"
-            >
-              Summary:
-            </label>
-            {/* <RichTextEditor
-              editorContent={content}
-              onChange={handleEditorChange}
-            /> */}
-            <textarea
-              name="details"
-              id="details"
-              value={state.details}
-              onChange={handleInputChange}
-              required
-              className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
           </div>
         </div>
+        <label
+          htmlFor="edu_summary"
+          className="block text-gray-700 font-medium mb-2"
+        >
+          Summary:
+        </label>
+        {/* <textarea
+              name="edu_summary"
+              id="edu_summary"
+              value={state.edu_summary}
+              onChange={handleInputChange}
+              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        /> */}
+        <Tiptap
+          content={state.edu_summary}
+          onContentChange={(content) =>
+            dispatch({ type: 'SET_EDU_SUMMARY', formValue: content })
+          }
+        />
 
         <button
           type="submit"
@@ -640,11 +652,11 @@ export default function ResumeForm({ handleSubmit }) {
           <div className="flex  justify-between">
             <div>
               {state.driving_licence ||
-              state.gender ||
-              state.date_of_birth ||
-              state.nationality ||
-              state.birth_place ? (
-                <p className="text-xl text-blue-600 ml-4"> Additional Info </p>
+                state.gender ||
+                state.date_of_birth ||
+                state.nationality ||
+                state.birth_place ? (
+                <p className="text-xl ml-4"> Additional Info </p>
               ) : (
                 <></>
               )}
@@ -689,19 +701,19 @@ export default function ResumeForm({ handleSubmit }) {
               ) : (
                 <></>
               )}
-              <p className="ml-4 mr-4 text-gray-600 text-xs">
+              <div className="ml-4 mr-4 text-gray-600 text-xs">
                 {" "}
-                {state.details}
-              </p>
+                {parser(state.details)}
+              </div>
             </div>
             <div className="flex flex-col ">
               {state.jobtitle ||
-              state.company ||
-              state.location ||
-              state.startdate_work ||
-              state.enddate_work ||
-              state.work_summary ? (
-                <p className="ml-4 mr-4 text-blue-600 text-xl">
+                state.company ||
+                state.location ||
+                state.startdate_work ||
+                state.enddate_work ||
+                state.work_summary ? (
+                <p className="ml-4 mr-4 text-gray-600 text-xl">
                   {" "}
                   Work Experiance
                 </p>
@@ -744,19 +756,20 @@ export default function ResumeForm({ handleSubmit }) {
                 <></>
               )}
               {state.work_summary ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  {state.work_summary}
-                </p>
+                <div className="ml-4 mr-4 text-gray-600 text-xs">
+                  {parser(state.work_summary)}
+                </div>
+
               ) : (
                 <></>
               )}
               {state.institute ||
-              state.degree ||
-              state.edu_location ||
-              state.startdate_edu ||
-              state.enddate_edu ||
-              state.edu_summary ? (
-                <p className="ml-4 mr-4 text-blue-600 text-xl">Education</p>
+                state.degree ||
+                state.edu_location ||
+                state.startdate_edu ||
+                state.enddate_edu ||
+                state.edu_summary ? (
+                <p className="ml-4 mr-4 text-gray-600 text-xl">Education</p>
               ) : (
                 <></>
               )}
@@ -796,9 +809,9 @@ export default function ResumeForm({ handleSubmit }) {
                 <></>
               )}
               {state.edu_summary ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xs">
-                  {state.edu_summary}
-                </p>
+                <div className="ml-4 mr-4 text-gray-600 text-xs">
+                  {parser(state.edu_summary)}
+                </div>
               ) : (
                 <></>
               )}
@@ -809,12 +822,9 @@ export default function ResumeForm({ handleSubmit }) {
           ) : (
             <></>
           )}
-          {<p className="ml-4 mr-4 text-gray-600 text-xs">{state.skills}</p>}
-
-          <div
-            className="ml-4 mr-4 text-gray-600 text-xs"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
+          {<div className="ml-4 mr-4 text-gray-600 text-xs">
+            {parser(state.skills)}
+          </div>}
         </div>
       </div>
     </div>
