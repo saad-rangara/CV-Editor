@@ -69,6 +69,15 @@ export default function TipTap({ content, onContentChange }) {
     }
   }, [content, editor]);
 
+  const insertQuote = () => {
+    const currentSelection = editor.state.selection;
+    const quoteText = `"${editor.state.doc.textBetween(
+      currentSelection.from,
+      currentSelection.to
+    )}"`;
+    editor.commands.insertContent(quoteText);
+  };
+
   if (!editor) {
     return null;
   }
@@ -146,9 +155,19 @@ export default function TipTap({ content, onContentChange }) {
         >
           <MdCode className="w-5 h-5" />
         </button>
-        <button
+        {/* <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={`p-1 rounded-lg ${
+            editor.isActive("blockquote")
+              ? "bg-blue-500 text-white"
+              : "text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          <MdFormatQuote className="w-5 h-5" />
+        </button> */}
+        <button
+          onClick={insertQuote}
+          className={`p-2 rounded-lg max-w-full ${
             editor.isActive("blockquote")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
