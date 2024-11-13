@@ -365,7 +365,7 @@ export default function ResumeForm({ handleSubmit }) {
         <Tiptap
           content={state.details}
           onContentChange={(content) =>
-            dispatch({ type: 'SET_DETAILS', formValue: content })
+            dispatch({ type: "SET_DETAILS", formValue: content })
           }
         />
 
@@ -454,7 +454,6 @@ export default function ResumeForm({ handleSubmit }) {
               className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-
         </div>
 
         <label
@@ -474,7 +473,7 @@ export default function ResumeForm({ handleSubmit }) {
         <Tiptap
           content={state.work_summary}
           onContentChange={(content) =>
-            dispatch({ type: 'SET_WORK_SUMMARY', formValue: content })
+            dispatch({ type: "SET_WORK_SUMMARY", formValue: content })
           }
         />
 
@@ -498,7 +497,7 @@ export default function ResumeForm({ handleSubmit }) {
         <Tiptap
           content={state.skills}
           onContentChange={(content) =>
-            dispatch({ type: 'SET_SKILLS', formValue: content })
+            dispatch({ type: "SET_SKILLS", formValue: content })
           }
         />
 
@@ -584,7 +583,6 @@ export default function ResumeForm({ handleSubmit }) {
               onChange={handleInputChange}
               className="w-full p-2 mb-4 border border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-
           </div>
         </div>
         <label
@@ -603,7 +601,7 @@ export default function ResumeForm({ handleSubmit }) {
         <Tiptap
           content={state.edu_summary}
           onContentChange={(content) =>
-            dispatch({ type: 'SET_EDU_SUMMARY', formValue: content })
+            dispatch({ type: "SET_EDU_SUMMARY", formValue: content })
           }
         />
 
@@ -653,7 +651,7 @@ export default function ResumeForm({ handleSubmit }) {
             </div>
             <div className="flex flex-col mt-12 ">
               <p className=" ml-4 text-gray-600 text-xs">{state.address}</p>
-              <p className="text-xs mr-4">
+              <p className="text-xs mr-4 text-gray-600">
                 {state.city} {state.postcode}
               </p>
               <p className="mt-4 ml-4 mr-4 text-gray-600 text-xs">
@@ -666,11 +664,11 @@ export default function ResumeForm({ handleSubmit }) {
           <div className="flex  justify-between">
             <div>
               {state.driving_licence ||
-                state.gender ||
-                state.date_of_birth ||
-                state.nationality ||
-                state.birth_place ? (
-                <p className="text-xl ml-4"> Additional Info </p>
+              state.gender ||
+              state.date_of_birth ||
+              state.nationality ||
+              state.birth_place ? (
+                <p className="text-xl ml-4 text-blue-600"> Additional Info </p>
               ) : (
                 <></>
               )}
@@ -722,12 +720,12 @@ export default function ResumeForm({ handleSubmit }) {
             </div>
             <div className="flex flex-col ">
               {state.jobtitle ||
-                state.company ||
-                state.location ||
-                state.startdate_work ||
-                state.enddate_work ||
-                state.work_summary ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xl">
+              state.company ||
+              state.location ||
+              state.startdate_work ||
+              state.enddate_work ||
+              state.work_summary ? (
+                <p className="ml-4 mr-4 text-blue-600 text-xl">
                   {" "}
                   Work Experiance
                 </p>
@@ -773,17 +771,16 @@ export default function ResumeForm({ handleSubmit }) {
                 <div className="ml-4 mr-4 text-gray-600 text-xs">
                   {parser(state.work_summary)}
                 </div>
-
               ) : (
                 <></>
               )}
               {state.institute ||
-                state.degree ||
-                state.edu_location ||
-                state.startdate_edu ||
-                state.enddate_edu ||
-                state.edu_summary ? (
-                <p className="ml-4 mr-4 text-gray-600 text-xl">Education</p>
+              state.degree ||
+              state.edu_location ||
+              state.startdate_edu ||
+              state.enddate_edu ||
+              state.edu_summary ? (
+                <p className="ml-4 mr-4 text-blue-600 text-xl">Education</p>
               ) : (
                 <></>
               )}
@@ -836,9 +833,11 @@ export default function ResumeForm({ handleSubmit }) {
           ) : (
             <></>
           )}
-          {<div className="ml-4 mr-4 text-gray-600 text-xs">
-            {parser(state.skills)}
-          </div>}
+          {
+            <div className="ml-4 mr-4 text-gray-600 text-xs">
+              {parser(state.skills)}
+            </div>
+          }
         </div>
       </div>
     </div>
