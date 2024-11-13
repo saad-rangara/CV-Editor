@@ -1,8 +1,8 @@
 import ResumeForm from "@/components/ResumeForm";
 import { db } from "@/utils/dbconnection";
-
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/dist/server/api-utils";
 export default function resumePage() {
-
   async function handleResume(formValues) {
     "use server";
     // console.log("Hello");
@@ -35,7 +35,6 @@ export default function resumePage() {
       endDateEdu: formValues.get("enddate_edu"),
       enuSummary: formValues.get("edu_summary"),
     };
-    
 
     // console.log(formData);
     // await db.query(`INSERT INTO personaldetails(first_name,last_name,email,position)
@@ -44,6 +43,8 @@ export default function resumePage() {
     // );
 
     await db.query(`select save_details1($1::JSON)`, [formData]);
+    // revalidatePath{"/hometwo"};
+    // redirect{"/hometwo"};
   }
 
   return (
