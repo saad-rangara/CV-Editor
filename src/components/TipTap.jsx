@@ -75,10 +75,10 @@ export default function TipTap({ content, onContentChange }) {
 
   return (
     <div className="max-w-lg mx-auto border rounded-lg shadow-lg">
-      <div className="flex items-center p-2 space-x-2 border-b bg-gray-100">
+      <div className="flex flex-wrap items-center p-2 space-x-2 border-b bg-gray-100">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("bold")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -88,7 +88,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("italic")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -108,7 +108,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("strike")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -118,7 +118,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("bulletList")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -128,7 +128,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("orderedList")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -138,7 +138,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("codeBlock")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -148,7 +148,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("blockquote")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -158,7 +158,7 @@ export default function TipTap({ content, onContentChange }) {
         </button>
         <button
           onClick={() => editor.chain().focus().setParagraph().run()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.isActive("paragraph")
               ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-200"
@@ -169,7 +169,7 @@ export default function TipTap({ content, onContentChange }) {
         <button
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().undo()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.can().undo()
               ? "text-gray-600 hover:bg-gray-200"
               : "text-gray-300 cursor-not-allowed"
@@ -180,7 +180,7 @@ export default function TipTap({ content, onContentChange }) {
         <button
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().redo()}
-          className={`p-2 rounded-lg ${
+          className={`p-1 rounded-lg ${
             editor.can().redo()
               ? "text-gray-600 hover:bg-gray-200"
               : "text-gray-300 cursor-not-allowed"
