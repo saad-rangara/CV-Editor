@@ -106,12 +106,26 @@ export default function ResumeForm({ handleSubmit }) {
     dispatch({ type: `SET_${name.toUpperCase()}`, formValue: value });
   }
 
+  function handleSubmitLocal(){
+    
+    const formData = new FormData();
+    Object.keys(state).forEach((key) => {
+      formData.append(key, state[key]);
+    });
+
+    // Add the TipTap content (summary) to FormData
+    // formData.append("summary", summary);
+
+    // Pass formData to the handleSubmit function in resumePage
+    handleSubmit(formData);
+  }
+
   const [scale, setScale] = useState(1);
 
   return (
     <div className="flex  min-h-screen bg-gray-100">
       <form
-        action={handleSubmit}
+        action={handleSubmitLocal}
         className="overflow-y-auto w-1/2 h-screen bg-white shadow-md rounded-lg p-8"
       >
         <h2 className="text-2xl font-bold mb-6 text-gray-800">
