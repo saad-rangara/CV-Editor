@@ -26,7 +26,7 @@ export default async function HomeTwo() {
               {cvList.map((cv) => (
                 <Link
                   key={cv.id}
-                  href={`/homethree/${cv.id}`}
+                  href={`/previous-cv/${cv.id}`}
                   className="border-base-content card bg-base-100 w-36 border text-center"
                 >
                   <div className="card-body">
