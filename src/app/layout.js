@@ -36,17 +36,18 @@ export default function RootLayout({ children }) {
             </div>
             <div className="flex-none">
               <div className="flex space-x-2 items-center">
-                <Link href="/hello" className="btn">
-                  About
-                </Link>
+  
                 <Link href="/" className="btn">
                   Home
                 </Link>
-                <Link href="/resume" className="btn">
+                <Link href="/editor" className="btn">
                   Create CV
                 </Link>
-                <Link href="/homethree" className="btn">
+                <Link href="/previous-cv" className="btn">
                   Old CV
+                </Link>
+                <Link href="/about" className="btn">
+                  About
                 </Link>
                 <Header />
 

@@ -1,7 +1,7 @@
 import ResumeForm from "@/components/ResumeForm";
 import { db } from "@/utils/dbconnection";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function EditResumePage({ params }) {
@@ -105,7 +105,10 @@ export default async function EditResumePage({ params }) {
     };
 
     await db.query(`select update_details($1::JSON,$2::INT)`, [formData, params.id]);
+    revalidatePath("/previous-cv");
+    redirect("/previous-cv");
   }
+
 
   return (
     <>
