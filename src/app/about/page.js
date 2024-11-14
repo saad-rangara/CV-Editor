@@ -13,7 +13,7 @@ export default function About() {
             CV maker was born in 2024 due to demand for a CV maker that beats
             all cv makers
           </p>
-          <Link href="/resume">
+          <Link href="/editor">
             <button className="btn btn-primary">Get Started</button>
           </Link>
         </div>

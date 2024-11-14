@@ -3,18 +3,20 @@ import { db } from "@/utils/dbconnection";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function HomeTwo() {
-  
   const { userId } = await auth();
 
   // Fetch all CVs from the database
   const result = await db.query(
-    `SELECT id, first_name, last_name, position FROM personaldetails where clerk_user_id = $1`,[userId]
+    `SELECT id, first_name, last_name, position FROM personaldetails where clerk_user_id = $1`,
+    [userId]
   );
   const cvList = result.rows;
 
   return (
     <>
-      <h1 className="text-center mt-5 text-5xl font-bold">Previous CV's</h1>
+      <h1 className="text-center mt-5 text-5xl font-bold">
+        Previous CV&apos;s
+      </h1>
 
       <div className="hero min-h-screen bg-base-100">
         <div className="hero-overlay bg-opacity-60"></div>
