@@ -93,13 +93,13 @@ function formReducer(state, action) {
   }
 }
 
-export default function ResumeForm({ handleSubmit , dbData }) {
+export default function ResumeForm({ handleSubmit, dbData }) {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [content, setContent] = useState("");
 
   useEffect(() => {
     // Set default value after component mounts if needed
-    if(dbData){
+    if (dbData) {
       dispatch({ type: `SET_FIRST_NAME`, formValue: dbData.first_name });
       dispatch({ type: `SET_LAST_NAME`, formValue: dbData.last_name });
       dispatch({ type: `SET_EMAIL`, formValue: dbData.email });
@@ -108,7 +108,10 @@ export default function ResumeForm({ handleSubmit , dbData }) {
       dispatch({ type: `SET_ADDRESS`, formValue: dbData.address });
       dispatch({ type: `SET_POSTCODE`, formValue: dbData.postcode });
       dispatch({ type: `SET_CITY`, formValue: dbData.city });
-      dispatch({ type: `SET_DRIVING_LICENCE`, formValue: dbData.driving_licence });
+      dispatch({
+        type: `SET_DRIVING_LICENCE`,
+        formValue: dbData.driving_licence,
+      });
       dispatch({ type: `SET_GENDER`, formValue: dbData.gender });
       dispatch({ type: `SET_DATE_OF_BIRTH`, formValue: dbData.date_of_birth });
       dispatch({ type: `SET_NATIONALITY`, formValue: dbData.nationality });
@@ -117,7 +120,10 @@ export default function ResumeForm({ handleSubmit , dbData }) {
       dispatch({ type: `SET_JOBTITLE`, formValue: dbData.jobtitle });
       dispatch({ type: `SET_COMPANY`, formValue: dbData.company });
       dispatch({ type: `SET_LOCATION`, formValue: dbData.location });
-      dispatch({ type: `SET_STARTDATE_WORK`, formValue: dbData.startdate_work });
+      dispatch({
+        type: `SET_STARTDATE_WORK`,
+        formValue: dbData.startdate_work,
+      });
       dispatch({ type: `SET_ENDDATE_WORK`, formValue: dbData.enddate_work });
       dispatch({ type: `SET_WORK_SUMMARY`, formValue: dbData.work_summary });
       dispatch({ type: `SET_SKILLS`, formValue: dbData.skills });
@@ -135,8 +141,7 @@ export default function ResumeForm({ handleSubmit , dbData }) {
     dispatch({ type: `SET_${name.toUpperCase()}`, formValue: value });
   }
 
-  function handleSubmitLocal(){
-    
+  function handleSubmitLocal() {
     const formData = new FormData();
     Object.keys(state).forEach((key) => {
       formData.append(key, state[key]);
@@ -375,22 +380,6 @@ export default function ResumeForm({ handleSubmit , dbData }) {
         <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">
           Personal Profile
         </h2>
-
-        {/* <label
-        {/* <label
-          htmlFor="details"
-          className="block text-gray-700 font-medium mb-2"
-        >
-          Personal Profile:
-        </label> */}
-        {/* <textarea
-          name="details"
-          id="details"
-          value={state.details}
-          onChange={handleInputChange}
-          required
-          className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        /> */}
         <Tiptap
           content={state.details}
           onContentChange={(content) =>
@@ -491,14 +480,6 @@ export default function ResumeForm({ handleSubmit , dbData }) {
         >
           Summary:
         </label>
-        {/* <textarea
-              name="work_summary"
-              id="work_summary"
-              value={state.work_summary}
-              onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            /> */}
-
         <Tiptap
           content={state.work_summary}
           onContentChange={(content) =>
@@ -506,23 +487,12 @@ export default function ResumeForm({ handleSubmit , dbData }) {
           }
         />
 
-        {/* <h2 className="text-2xl font-bold mt-8 mb-6 text-gray-800">Skills</h2> */}
-
         <label
           htmlFor="skills"
           className="block text-gray-700 text-3xl font-medium mb-2"
         >
           Skills
         </label>
-        {/* <textarea
-          name="skills"
-          id="skills"
-          value={state.skills}
-          onChange={handleInputChange}
-          required
-          className="w-full p-2 mb-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        /> */}
-
         <Tiptap
           content={state.skills}
           onContentChange={(content) =>
@@ -620,13 +590,6 @@ export default function ResumeForm({ handleSubmit , dbData }) {
         >
           Summary:
         </label>
-        {/* <textarea
-              name="edu_summary"
-              id="edu_summary"
-              value={state.edu_summary}
-              onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        /> */}
         <Tiptap
           content={state.edu_summary}
           onContentChange={(content) =>

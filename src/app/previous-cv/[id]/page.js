@@ -4,9 +4,22 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
-export default async function EditResumePage({ params }) {
+export async function generateMetadata({ params }) {
+  const { id } = await params;
 
-  const personDetails = ( await db.query(`SELECT pd.first_name,
+  const cvTitle = `Resume ${id}`;
+
+  return {
+    title: `${cvTitle} - CV Editor`,
+    description: `View and edit the details of your resume (ID: ${id}). Make changes to improve and update your professional CV.`,
+    keywords: ["resume", "CV editor", `resume ${id}`, "edit CV", "CV history"],
+  };
+}
+
+export default async function EditResumePage({ params }) {
+  const personDetails = (
+    await db.query(
+      `SELECT pd.first_name,
                                                 pd.last_name,
                                                 pd.email,
                                                 pd.position,
@@ -39,10 +52,13 @@ export default async function EditResumePage({ params }) {
                                             JOIN work_expirience we on pd.id = we.person_id
                                             JOIN skills ss on pd.id = ss.person_id
                                             JOIN education en on pd.id = en.person_id
-                                            WHERE pd.id = $1`, [params.id]) ).rows[0];
+                                            WHERE pd.id = $1`,
+      [params.id]
+    )
+  ).rows[0];
 
   const dbFormData = {
-    first_name : personDetails.first_name,
+    first_name: personDetails.first_name,
     last_name: personDetails.last_name,
     email: personDetails.email,
     position: personDetails.position,
@@ -52,24 +68,24 @@ export default async function EditResumePage({ params }) {
     city: personDetails.city,
     driving_licence: personDetails.driving_licence,
     gender: personDetails.gender,
-    date_of_birth: personDetails.date_of_birth.toISOString().split('T')[0],
+    date_of_birth: personDetails.date_of_birth.toISOString().split("T")[0],
     nationality: personDetails.nationality,
     birth_place: personDetails.birth_place,
     details: personDetails.details,
     jobtitle: personDetails.job_title,
     company: personDetails.company,
     location: personDetails.location,
-    startdate_work: personDetails.startdate_work.toISOString().split('T')[0],
-    enddate_work: personDetails.enddate_work.toISOString().split('T')[0],
+    startdate_work: personDetails.startdate_work.toISOString().split("T")[0],
+    enddate_work: personDetails.enddate_work.toISOString().split("T")[0],
     work_summary: personDetails.worksummary,
     skills: personDetails.skills,
     institute: personDetails.institution,
     degree: personDetails.degree,
     edu_location: personDetails.edu_location,
-    startdate_edu: personDetails.stratdate_edu.toISOString().split('T')[0],
-    enddate_edu: personDetails.enddate_edu.toISOString().split('T')[0],
-    edu_summary: personDetails.edu_summary
-  }
+    startdate_edu: personDetails.stratdate_edu.toISOString().split("T")[0],
+    enddate_edu: personDetails.enddate_edu.toISOString().split("T")[0],
+    edu_summary: personDetails.edu_summary,
+  };
 
   async function handleResume(formValues) {
     "use server";
@@ -104,15 +120,17 @@ export default async function EditResumePage({ params }) {
       enuSummary: formValues.get("edu_summary"),
     };
 
-    await db.query(`select update_details($1::JSON,$2::INT)`, [formData, params.id]);
+    await db.query(`select update_details($1::JSON,$2::INT)`, [
+      formData,
+      params.id,
+    ]);
     revalidatePath("/previous-cv");
     redirect("/previous-cv");
   }
 
-
   return (
     <>
-      <ResumeForm handleSubmit={handleResume} dbData={dbFormData}/>
+      <ResumeForm handleSubmit={handleResume} dbData={dbFormData} />
     </>
   );
 }

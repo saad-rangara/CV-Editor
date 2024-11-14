@@ -1,4 +1,17 @@
 import Link from "next/link";
+
+export const metadata = {
+  title: "About Us - CV Editor",
+  description:
+    "Learn more about the CV Editor team and our mission to help you create the perfect resume with ease.",
+  keywords: [
+    "about CV editor",
+    "CV editor team",
+    "resume editor info",
+    "about us",
+  ],
+};
+
 export default function About() {
   return (
     <div className="hero bg-base-200 min-h-screen">
