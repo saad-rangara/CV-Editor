@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 export default async function HomeTwo() {
   const { userId } = await auth();
 
-  // Fetch all CVs from the database
   const result = await db.query(
     `SELECT id, first_name, last_name, position FROM personaldetails where clerk_user_id = $1`,
     [userId]
@@ -36,7 +35,7 @@ export default async function HomeTwo() {
               {" "}
               {/* Updated to flex layout */}
               {cvList.map((cv) => (
-                <div>
+                <div key={cv.id} className="card-container">
                   <Link
                     key={cv.id}
                     href={`/previous-cv/${cv.id}`}
