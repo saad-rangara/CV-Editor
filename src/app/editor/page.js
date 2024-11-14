@@ -1,7 +1,7 @@
 import ResumeForm from "@/components/ResumeForm";
 import { db } from "@/utils/dbconnection";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
 export default function resumePage() {
@@ -42,6 +42,8 @@ export default function resumePage() {
     const { userId } = await auth();
 
     await db.query(`select save_details2($1::JSON,$2::TEXT)`, [formData, userId]);
+    revalidatePath("/previous-cv");
+    redirect("/previous-cv");
   }
 
   return (
