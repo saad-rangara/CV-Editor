@@ -155,16 +155,7 @@ export default function TipTap({ content, onContentChange }) {
         >
           <MdCode className="w-5 h-5" />
         </button>
-        {/* <button
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={`p-1 rounded-lg ${
-            editor.isActive("blockquote")
-              ? "bg-blue-500 text-white"
-              : "text-gray-600 hover:bg-gray-200"
-          }`}
-        >
-          <MdFormatQuote className="w-5 h-5" />
-        </button> */}
+
         <button
           onClick={insertQuote}
           className={`p-2 rounded-lg max-w-full ${

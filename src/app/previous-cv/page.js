@@ -5,6 +5,13 @@ import DeleteButton from "@/components/DeleteButton";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Previous CVs - CV Editor",
+  description:
+    "View and edit your previously created CVs with ease. Manage and update your saved resumes for future applications.",
+  keywords: ["previous CVs", "resume history", "edit CV", "CV Editor"],
+};
+
 export default async function HomeTwo() {
   const { userId } = await auth();
 
@@ -14,8 +21,8 @@ export default async function HomeTwo() {
   );
   const cvList = result.rows;
 
-  async function handleDelete(cvId){
-    "use server"
+  async function handleDelete(cvId) {
+    "use server";
     await db.query(`select delete_details($1::INT)`, [cvId]);
     revalidatePath("/previous-cv");
     redirect("/previous-cv");
@@ -33,23 +40,27 @@ export default async function HomeTwo() {
           <div className="max-w-md">
             <div className="flex flex-wrap gap-4 justify-center">
               {" "}
-              {/* Updated to flex layout */}
               {cvList.map((cv) => (
                 <div key={cv.id} className="card-container">
                   <Link
                     key={cv.id}
                     href={`/previous-cv/${cv.id}`}
-                    className="border-base-content card bg-base-100 w-36 border text-center"
+                    className="border-base-content card bg-base-100 w-36 border text-center hover:bg-slate-500 transition duration-300"
                   >
-                    <div className="card-body" key={cv.id+"div"}>
-                      <p className="text-lg font-bold" key={cv.id+"p1"}>
+                    <div className="card-body" key={cv.id + "div"}>
+                      <p className="text-lg font-bold" key={cv.id + "p1"}>
                         {cv.first_name} {cv.last_name}
                       </p>
-                      <p className="text-sm" key={cv.id+"p2"}>{cv.position}</p>
+                      <p className="text-sm" key={cv.id + "p2"}>
+                        {cv.position}
+                      </p>
                     </div>
                   </Link>
-                  <DeleteButton key={cv.id+"delComp"} handleDeleteComp={handleDelete} cvId={cv.id}/>
-                  
+                  <DeleteButton
+                    key={cv.id + "delComp"}
+                    handleDeleteComp={handleDelete}
+                    cvId={cv.id}
+                  />
                 </div>
               ))}
             </div>

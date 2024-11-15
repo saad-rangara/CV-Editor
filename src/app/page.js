@@ -1,4 +1,18 @@
 import Link from "next/link";
+
+export const metadata = {
+  title: "CV Editor - Create Your Professional Resume",
+  description:
+    "Easily create, edit, and manage your professional resume with CV Editor. Start building your future today.",
+  keywords: [
+    "CV editor",
+    "resume builder",
+    "create CV",
+    "edit resume",
+    "CV Editor home",
+  ],
+};
+
 export default function HomePage() {
   return (
     <>

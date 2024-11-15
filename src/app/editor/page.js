@@ -4,8 +4,20 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
-export default function resumePage() {
+export const metadata = {
+  title: "Create or Edit Resume - CV Editor",
+  description:
+    "Start creating or editing your resume with our easy-to-use CV Editor. Customize your resume to stand out.",
+  keywords: [
+    "create resume",
+    "edit resume",
+    "CV Editor",
+    "resume editor",
+    "resume customization",
+  ],
+};
 
+export default function resumePage() {
   async function handleResume(formValues) {
     "use server";
     // console.log("Hello");
@@ -41,7 +53,10 @@ export default function resumePage() {
 
     const { userId } = await auth();
 
-    await db.query(`select save_details2($1::JSON,$2::TEXT)`, [formData, userId]);
+    await db.query(`select save_details2($1::JSON,$2::TEXT)`, [
+      formData,
+      userId,
+    ]);
     revalidatePath("/previous-cv");
     redirect("/previous-cv");
   }
