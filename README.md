@@ -51,9 +51,10 @@ To clone the repository:
 1. Open a terminal or Git Bash.
 2. Navigate to the directory where you want to store your project.
 3. Run the following command to clone the repository:
-   git clone https://github.com/your-username/your-repository-name.git
+   git clone git@github.com:saad-rangara/CV-Editor.git
+   
 
-4. After cloning, navigate into the project folder:
+5. After cloning, navigate into the project folder:
 cd your-repository-name
 
 ### 2. Install Dependencies
