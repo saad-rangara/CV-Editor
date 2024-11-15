@@ -45,7 +45,7 @@ export default async function HomeTwo() {
                   <Link
                     key={cv.id}
                     href={`/previous-cv/${cv.id}`}
-                    className="border-base-content card bg-base-100 w-36 border text-center"
+                    className="border-base-content card bg-base-100 w-36 border text-center hover:bg-slate-500 transition duration-300"
                   >
                     <div className="card-body" key={cv.id + "div"}>
                       <p className="text-lg font-bold" key={cv.id + "p1"}>

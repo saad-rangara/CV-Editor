@@ -29,7 +29,10 @@ export default function RootLayout({ children }) {
         >
           <div className="navbar bg-base-100">
             <div className="flex-1 flex items-center space-x-2">
-              <Link href="/" className="btn text-lg font-semibold">
+              <Link
+                href="/"
+                className="btn text-lg font-semibold text-white py-2 px-4 rounded hover:bg-sky-500 transition duration-300"
+              >
                 CV Maker
               </Link>
             </div>
@@ -47,16 +50,28 @@ export default function RootLayout({ children }) {
             </div>
 
             <div className="flex flex-none space-x-2 items-center">
-              <Link href="/" className="btn">
+              <Link
+                href="/"
+                className="btn text-white py-2 px-4 rounded hover:bg-sky-500 transition duration-300"
+              >
                 Home
               </Link>
-              <Link href="/editor" className="btn">
+              <Link
+                href="/editor"
+                className="btn text-white py-2 px-4 rounded hover:bg-sky-500 transition duration-300"
+              >
                 Create CV
               </Link>
-              <Link href="/previous-cv" className="btn">
+              <Link
+                href="/previous-cv"
+                className="btn text-white py-2 px-4 rounded hover:bg-sky-500 transition duration-300"
+              >
                 Old CV
               </Link>
-              <Link href="/about" className="btn">
+              <Link
+                href="/about"
+                className="btn text-white py-2 px-4 rounded hover:bg-sky-500 transition duration-300"
+              >
                 About
               </Link>
               <Header />
