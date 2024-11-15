@@ -1,6 +1,14 @@
 # Hello there and Welcome to the CV-editor app
 
-### check out our [CV-app](https://cv-editor-dun.vercel.app/sign-in?redirect_url=https%3A%2F%2Fcv-editor-dun.vercel.app%2F) to see our creation
+### Check out our [CV-app](https://cv-editor-dun.vercel.app/sign-in?redirect_url=https%3A%2F%2Fcv-editor-dun.vercel.app%2F) to see our creation
+
+### How to get started
+
+- First, you need to log in. We recommend using your GitHub account, but using your Google account works just as well.
+- Secondly, you’ll arrive at the homepage, where you can do all sorts of things.
+- Thirdly, we recommend checking out [Create-CV](https://cv-editor-dun.vercel.app/editor) and creating your CV using our tools.
+- Fourthly, once you’ve created your CV, we recommend looking at your [Old-CV](https://cv-editor-dun.vercel.app/previous-cv) so you can edit and change previous ones.
+- Fifthly, we recommend visiting our [About](https://cv-editor-dun.vercel.app/about) page to see what it’s all about (it’s a funny one!).
 
 ## Here’s how it works:
 
